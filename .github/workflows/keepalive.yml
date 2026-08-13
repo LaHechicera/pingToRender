@@ -20,5 +20,5 @@ jobs:
             echo "Horario nocturno (23:00-07:00), se omite el ping."
           else
             echo "Haciendo ping al backend..."
-            curl -s -o /dev/null -w "Status: %{http_code}\n" https://tu-app.onrender.com
+            curl -s -o /dev/null -w "Status: %{http_code}\n" https://detroit-bitacora.onrender.com
           fi
