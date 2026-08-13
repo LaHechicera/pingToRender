@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 
 # ---------- CONFIGURACIÓN ----------
-URL = "https://tu-app.onrender.com"  # <-- cambia esto por la URL real de tu backend
+URL = "https://detroit-bitacora.onrender.com"  # <-- cambia esto por la URL real de tu backend
 INTERVALO_SEGUNDOS = 600             # 10 minutos
 
 HORA_INICIO_NOCHE = 23   # a partir de las 23:00 deja de hacer ping
