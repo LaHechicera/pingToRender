@@ -1,0 +1,24 @@
+name: Keep Backend Awake
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'   # corre cada 10 minutos (hora UTC)
+  workflow_dispatch:          # permite ejecutarlo manualmente desde GitHub
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping backend si no es horario nocturno
+        env:
+          TZ: America/Santiago   # así el "date" de abajo respeta tu hora local (con DST incluido)
+        run: |
+          HOUR=$(date +%H)
+          echo "Hora actual en Santiago: $HOUR"
+
+          if [ "$HOUR" -ge 23 ] || [ "$HOUR" -lt 7 ]; then
+            echo "Horario nocturno (23:00-07:00), se omite el ping."
+          else
+            echo "Haciendo ping al backend..."
+            curl -s -o /dev/null -w "Status: %{http_code}\n" https://tu-app.onrender.com
+          fi
